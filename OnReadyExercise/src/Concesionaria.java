@@ -3,11 +3,15 @@ import java.util.ArrayList;
 public class Concesionaria {
 	Autos auto;
 	Motos moto;
-	ArrayList<Vehiculos> vehiculos;
+	double precioMasAlto;
+	double precioMasBajo;
 	String vehiculoMasCaro;
 	String vehiculoMasVarato;
+	
+	ArrayList<Vehiculos> vehiculos;
 	public Concesionaria() {
 		vehiculos = new ArrayList<Vehiculos>();
+		precioMasAlto = 0;
 	}
 	void agregarAuto(String marca, String modelo, int cantPuertas, double precio){
 		auto = new Autos(marca,modelo,cantPuertas, precio);
@@ -25,12 +29,19 @@ public class Concesionaria {
 	}
 	void mostrarInfoAdicional() {
 		System.out.println("=============================");
-		System.out.println("Vehiculo mas caro:");
+		System.out.println("Vehiculo mas caro:" + " " + obtenerVehiculoMasCaro());
 		System.out.println("Vehiculo mas varato:");
 		System.out.println("Vehiculo que contiene en el modelo la letra 'Y':");
 	}
-	void obtenerVehiculoMasCaro() {
-		
+	String obtenerVehiculoMasCaro() {
+		for(Vehiculos vehiculo : vehiculos) {
+			if(vehiculo.precio >= precioMasAlto) {
+				precioMasAlto = vehiculo.precio;
+				vehiculoMasCaro = vehiculo.marca + " " + vehiculo.modelo;
+			}
+			
+		}
+		return vehiculoMasCaro;
 	}
 	void obtenerVehiculoMasVarato() {
 		

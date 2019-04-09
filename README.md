@@ -1,2 +1,2 @@
 # OnreadyExercise
-Repository created to send a solution to an exercise proposed
+Repository created to send a solution for an exercise proposed

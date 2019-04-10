@@ -4,8 +4,8 @@ import java.util.Collections;
 public class Concesionaria {
 	Autos auto;
 	Motos moto;
-	double precioMasAlto;
-	double precioMasBajo;
+	
+	
 	String vehiculoMasCaro;
 	String vehiculoMasVarato;
 	
@@ -13,7 +13,7 @@ public class Concesionaria {
 	
 	public Concesionaria() {
 		vehiculos = new ArrayList<Vehiculos>();
-		precioMasAlto = 0;
+		
 	}
 	
 	void agregarAuto(String marca, String modelo, int cantPuertas, double precio){

@@ -34,33 +34,44 @@ public class Concesionaria {
 	
 	void mostrarInfoAdicional() {
 		System.out.println("=============================");
-		System.out.println("Vehiculo mas caro:" + " " + obtenerVehiculoMasCaro());
-		System.out.println("Vehiculo mas varato:");
-		System.out.println("Vehiculo que contiene en el modelo la letra 'Y':");
+		System.out.println("Vehiculo mas caro:"  + " " + obtenerVehiculoMasCaro());
+		System.out.println("Vehiculo mas varato:"+ " " + obtenerVehiculoMasBarato());
+		System.out.println("Vehiculo que contiene en el modelo la letra 'Y':" + " " + obtenerModeloQueContengaLetra("Y"));
 		System.out.println("=============================");
-		System.out.println("Vehiculos ordenados por precio de mayor a menos:");
+		System.out.println("Vehiculos ordenados por precio de mayor a menor:");
 		imprimirVehiculosPrecioMayorAMenor();
 	}
 	
 	String obtenerVehiculoMasCaro() {
-		
-		for(Vehiculos vehiculo : vehiculos) {
-			if(vehiculo.precio >= precioMasAlto) {
-				precioMasAlto = vehiculo.precio;
-				vehiculoMasCaro = vehiculo.marca + " " + vehiculo.modelo;
-			}
-		}
-		return vehiculoMasCaro;
+		ordenarLista();
+		return vehiculos.get(0).marca + " " + vehiculos.get(0).modelo;
 	}
 	
-	String obtenerVehiculoMasVarato() {
-	return "sa";
+	String obtenerVehiculoMasBarato() {
+		ordenarLista();
+		return vehiculos.get(vehiculos.size()-1).marca + " " + vehiculos.get(vehiculos.size()-1).modelo;
+		
 	}
-	void imprimirVehiculosPrecioMayorAMenor() {
-		Collections.sort(vehiculos);
+	String obtenerModeloQueContengaLetra(String s) {
+		String modelo = "";
 		for(Vehiculos vehiculo : vehiculos) {
-			System.out.println(vehiculo.marca + " " + vehiculo.modelo);
+			if(vehiculo.modelo.contains(s)) {
+				modelo = vehiculo.marca;
+			}
 			
 		}
+		return modelo;
+		
+	}
+	void imprimirVehiculosPrecioMayorAMenor() {
+		ordenarLista();
+		for(Vehiculos vehiculo : vehiculos) {
+			System.out.println(vehiculo.marca + " " + vehiculo.modelo);
+		}
+	}
+	
+	
+	void ordenarLista() {
+		Collections.sort(vehiculos);
 	}
 }

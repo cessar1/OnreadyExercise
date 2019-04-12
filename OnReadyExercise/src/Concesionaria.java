@@ -1,77 +1,67 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Concesionaria {
-	Autos auto;
-	Motos moto;
-	
-	
-	String vehiculoMasCaro;
-	String vehiculoMasVarato;
-	
-	ArrayList<Vehiculos> vehiculos;
+
+	private List<Vehiculo> vehiculos;
 	
 	public Concesionaria() {
-		vehiculos = new ArrayList<Vehiculos>();
-		
+		vehiculos = new ArrayList<>();
 	}
 	
-	void agregarAuto(String marca, String modelo, int cantPuertas, double precio){
-		auto = new Autos(marca,modelo,cantPuertas, precio);
-		vehiculos.add(auto);
+	public void agregarVehiculo(Vehiculo vehiculo){
+		vehiculos.add(vehiculo);
 	}
-	void mostrarVehiculos() {
-		for(Vehiculos vehiculo : vehiculos) {
+	public void mostrarVehiculos() {
+		for(Vehiculo vehiculo : vehiculos) {
 			vehiculo.mostrarInfo();
 		}
 	}
+
 	
-	void agregarMoto(String marca, String modelo, int cilindrada , double precio) {
-		moto = new Motos(marca, modelo, cilindrada , precio);
-		vehiculos.add(moto);
-		
-	}
-	
-	void mostrarInfoAdicional() {
+	public void mostrarInfoAdicional() {
 		System.out.println("=============================");
 		System.out.println("Vehiculo mas caro:"  + " " + obtenerVehiculoMasCaro());
-		System.out.println("Vehiculo mas varato:"+ " " + obtenerVehiculoMasBarato());
-		System.out.println("Vehiculo que contiene en el modelo la letra 'Y':" + " " + obtenerModeloQueContengaLetra("Y"));
+		System.out.println("Vehiculo mas barato:"+ " " + obtenerVehiculoMasBarato());
+		Vehiculo vehiculoConLetra = obtenerVehiculoQueContengaLetra("Y");
+		System.out.println("Vehiculo que contiene en el modelo la letra 'Y':" + " " +
+				vehiculoConLetra.toString() + " " + vehiculoConLetra.precio );
 		System.out.println("=============================");
-		System.out.println("Vehiculos ordenados por precio de mayor a menor:");
+		System.out.println("Vehiculo ordenados por precio de mayor a menor:");
 		imprimirVehiculosPrecioMayorAMenor();
 	}
 	
-	String obtenerVehiculoMasCaro() {
+	public Vehiculo obtenerVehiculoMasCaro() {
 		ordenarLista();
-		return vehiculos.get(0).marca + " " + vehiculos.get(0).modelo;
+		return vehiculos.get(0);
 	}
 	
-	String obtenerVehiculoMasBarato() {
+	public Vehiculo obtenerVehiculoMasBarato() {
 		ordenarLista();
-		return vehiculos.get(vehiculos.size()-1).marca + " " + vehiculos.get(vehiculos.size()-1).modelo;
+		return vehiculos.get(0);
 		
 	}
-	String obtenerModeloQueContengaLetra(String s) {
-		String modelo = "";
-		for(Vehiculos vehiculo : vehiculos) {
+	public Vehiculo obtenerVehiculoQueContengaLetra(String s) {
+
+		for(Vehiculo vehiculo : vehiculos) {
 			if(vehiculo.modelo.contains(s)) {
-				modelo = vehiculo.marca;
+				return vehiculo;
 			}
 			
 		}
-		return modelo;
+		return null;
 		
 	}
-	void imprimirVehiculosPrecioMayorAMenor() {
+	public void imprimirVehiculosPrecioMayorAMenor() {
 		ordenarLista();
-		for(Vehiculos vehiculo : vehiculos) {
-			System.out.println(vehiculo.marca + " " + vehiculo.modelo);
+		for(Vehiculo vehiculo : vehiculos) {
+			System.out.println(vehiculo.toString());
 		}
 	}
 	
 	
-	void ordenarLista() {
+	private void ordenarLista() {
 		Collections.sort(vehiculos);
 	}
 }

@@ -1,25 +1,20 @@
-import java.text.DecimalFormat;
 
-public class Autos extends Vehiculos {
+public class Auto extends Vehiculo {
 	public int puertas;
-	DecimalFormat formato;
-	
-	public Autos(String marca, String modelo, int puertas, double precio) {
+
+	public Auto(String marca, String modelo, int puertas, double precio) {
+		super(marca, modelo, precio);
 		this.puertas = puertas;
-		this.marca   = marca;
-		this.modelo  = modelo;
-		this.precio  = precio;
-		this.formato = new DecimalFormat("$#,###.00");
-		
+
 	}
 
 	@Override
-	void mostrarInfo() {
+	public void mostrarInfo() {
 		System.out.println("Marca:"   + " " +   this.marca   + " " + "//"  + " " +
 						   "Modelo:"  + " " +   this.modelo  + " " + "//"  + " " +
 						   "Puertas:" + " " +   this.puertas + " " + "//"  + " " +
 						   "Precio:"  + " " + formato.format(this.precio));
-		
+
 	}
 
 }

@@ -26,7 +26,7 @@ public class Concesionaria {
 		System.out.println("Vehiculo mas barato:"+ " " + obtenerVehiculoMasBarato());
 		Vehiculo vehiculoConLetra = obtenerVehiculoQueContengaLetra("Y");
 		System.out.println("Vehiculo que contiene en el modelo la letra 'Y':" + " " +
-				vehiculoConLetra.toString() + " " + vehiculoConLetra.precio );
+				vehiculoConLetra.toString() + " " + vehiculoConLetra.formato.format(vehiculoConLetra.precio));
 		System.out.println("=============================");
 		System.out.println("Vehiculo ordenados por precio de mayor a menor:");
 		imprimirVehiculosPrecioMayorAMenor();
